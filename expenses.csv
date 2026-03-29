@@ -1,0 +1,16 @@
+id , title , amount , category , date
+1,lunch,250.0,Food,2026-03-27
+2,taxi,100.0,Transport,2026-03-27
+3,bus,50.0,Transport,2026-03-25
+4,books,400.0,Shopping,2026-03-16
+5,tshirt,400.0,Shopping,2026-03-12
+6,fruits,300.0,Grocery,2026-03-12
+7,tea,20.0,Food,2026-03-10
+
+8,metro,50.0,Transport,2026-03-08
+9,tea,30.0,Food,2026-03-08
+10,movie,400.0,Entertainment,2026-03-08
+11,meat,200.0,Grocery,2026-03-04
+12,pens,150.0,Shopping,2026-03-04
+13,vegetables,350.0,Grocery,2026-03-02
+14,bus,40.0,Transport,2026-03-02

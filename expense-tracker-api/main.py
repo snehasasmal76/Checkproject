@@ -1,0 +1,35 @@
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+from database import SessionLocal, engine
+import models
+app = FastAPI()
+models.Base.metadata.create_all(bind=engine)
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+@app.get("/")
+def home():
+    return {"message": "Expense Tracker API running"}
+@app.post("/expenses")
+def add_expense(title: str, amount: float, category: str, db: Session = Depends(get_db)):
+    new_expense = models.Expense(
+        title=title,
+        amount=amount,
+        category=category
+    )
+    db.add(new_expense)
+    db.commit()
+    db.refresh(new_expense)
+    return {"message": "Expense added successfully"}
+@app.get("/expenses")
+def get_expenses(db: Session = Depends(get_db)):
+    expenses = db.query(models.Expense).all()
+    return expenses
+@app.get("/expenses/total")
+def get_total_expenses(db: Session = Depends(get_db)):
+    expenses = db.query(models.Expense).all()
+    total = sum(e.amount for e in expenses)
+    return {"total_expense": total}
